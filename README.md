@@ -63,7 +63,7 @@ npm run start
 The API will be running at http://localhost:3000.
 
 
-##API Endpoints
+## API Endpoints
 Authentication
 Register User
 ```
