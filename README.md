@@ -31,35 +31,34 @@ This project is a simple REST API built with [NestJS](https://nestjs.com/), [Seq
 
 1. **Clone the repository:**
 
-   ```code
-   git clone https://github.com/yourusername/nestjs-blog-api.git
-   cd nestjs-blog-api
-
-navigate to backend-test1
+```
+git clone https://github.com/fabianindra/NoLimitTest
+cd backend-test1
+```
 
 2. **Install dependencies:**
-   ```
-   npm install
-   ```
+```
+npm install
+```
 
 3. **Database Setup**
 Create a MySQL database:
-   ```
-   CREATE DATABASE blog;
-   ```
+```
+CREATE DATABASE blog;
+```
 
 Run migrations:
 (If you have migrations set up, otherwise, Sequelize should sync the models automatically)
 
-   ```
-   npm run migration:run
-   ```
+```
+npm run migration:run
+```
 
 4. **Running the Application**
 Start the application:
-   ```
-   npm run start
-   ```
+```
+npm run start
+```
 
 The API will be running at http://localhost:3000.
 
@@ -68,7 +67,8 @@ The API will be running at http://localhost:3000.
 Authentication
 Register User
 ```
-POST /auth/register
+POST
+http://localhost:3000/auth/register
 ```
 
 Request Body:
@@ -82,7 +82,8 @@ Request Body:
 
 Login User
 ```
-POST /auth/login
+POST
+http://localhost:3000/auth/login
 ```
 
 Request Body:
@@ -103,12 +104,14 @@ Response:
 Posts
 Get All Posts
 ```
-GET /posts
+GET
+http://localhost:3000/posts
 ```
 
 Get Post by ID
 ```
-GET /posts/:id
+GET
+http://localhost:3000/posts/:id
 ```
 
 Create Post (Requires Authentication)
@@ -130,7 +133,8 @@ Request Body:
 
 Update Post (Requires Authentication)
 ```
-PUT /posts/:id
+PUT
+http://localhost:3000/posts/:id
 ```
 
 Headers:
@@ -147,7 +151,8 @@ Request Body:
 
 Delete Post (Requires Authentication)
 ```
-DELETE /posts/:id
+DELETE
+http://localhost:3000/posts/:id
 ```
 
 Headers:
@@ -171,16 +176,6 @@ Example:
 ## Overview
 This project is a NestJS-based backend application that integrates with Elasticsearch to provide various employee metrics. It includes endpoints for retrieving employee counts, salary statistics, age distribution, and more.
 
-## Table of Contents
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Configuration](#configuration)
-- [Running the Application](#running-the-application)
-- [Testing Endpoints](#testing-endpoints)
-- [Reindexing Data](#reindexing-data)
-- [Notes](#notes)
-- [License](#license)
-
 ## Prerequisites
 Before you begin, ensure you have the following installed:
 
@@ -194,11 +189,9 @@ Before you begin, ensure you have the following installed:
 ### Clone the Repository
 
 ```
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone https://github.com/fabianindra/NoLimitTest
+cd backend-test2
 ```
-
-navigate to `/backend-test2`
 
 install dependencies:
 ```
@@ -211,8 +204,11 @@ Make sure Elasticsearch is running.
 
 Update Environment Variables
 Configure the ElasticsearchModule in src/employee/employee.module.ts to match your Elasticsearch server configuration.
+Change provate readonly index based on your index setup.
 
 ```
+private readonly index = 'companydatabase';
+
 ElasticsearchModule.register({
   node: 'http://localhost:9200',
 }),
