@@ -116,7 +116,8 @@ http://localhost:3000/posts/:id
 
 Create Post (Requires Authentication)
 ```
-POST /posts
+POST
+http://localhost:3000/posts
 ```
 
 Headers:
