@@ -1,4 +1,4 @@
-# NestJS Blog API with JWT Authentication
+# 1. NestJS Blog API with JWT Authentication
 
 This project is a simple REST API built with [NestJS](https://nestjs.com/), [Sequelize](https://sequelize.org/), and [MySQL](https://www.mysql.com/). The API manages blog posts and users, featuring JWT-based authentication.
 
