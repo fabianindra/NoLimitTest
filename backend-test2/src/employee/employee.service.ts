@@ -38,6 +38,7 @@ export class EmployeeService {
         },
       },
     });
+
     const minSalary = result.aggregations?.min_salary as { value: number };
     const maxSalary = result.aggregations?.max_salary as { value: number };
     return {
@@ -61,10 +62,12 @@ export class EmployeeService {
       },
     });
 
-    const ageDistribution = result.aggregations?.age_distribution as {
-      value: number;
-    };
-    return ageDistribution.value;
+    const ageDistribution = (
+      result.aggregations?.age_distribution as {
+        buckets: { key: number; doc_count: number }[];
+      }
+    ).buckets;
+    return ageDistribution;
   }
 
   async genderDistribution() {
@@ -73,15 +76,18 @@ export class EmployeeService {
       body: {
         aggs: {
           gender_distribution: {
-            terms: { field: 'Gender.keyword' },
+            terms: { field: 'Gender' },
           },
         },
       },
     });
-    const genderDistribution = result.aggregations?.gender_distribution as {
-      value: number;
-    };
-    return genderDistribution.value;
+
+    const genderDistribution = (
+      result.aggregations?.gender_distribution as {
+        buckets: { key: string; doc_count: number }[];
+      }
+    ).buckets;
+    return genderDistribution;
   }
 
   async maritalStatusDistribution() {
@@ -90,14 +96,18 @@ export class EmployeeService {
       body: {
         aggs: {
           marital_status_distribution: {
-            terms: { field: 'MaritalStatus.keyword' },
+            terms: { field: 'MaritalStatus' },
           },
         },
       },
     });
-    const maritalStatusDistribution = result.aggregations
-      ?.marital_status_distribution as { value: number };
-    return maritalStatusDistribution.value;
+
+    const maritalStatusDistribution = (
+      result.aggregations?.marital_status_distribution as {
+        buckets: { key: string; doc_count: number }[];
+      }
+    ).buckets;
+    return maritalStatusDistribution;
   }
 
   async dateOfJoiningHistogram() {
@@ -127,11 +137,12 @@ export class EmployeeService {
       body: {
         aggs: {
           top_interests: {
-            terms: { field: 'Interests.keyword' },
+            terms: { field: 'Interests' },
           },
         },
       },
     });
+
     const buckets = (result.aggregations?.top_interests as { buckets: any[] })
       .buckets;
     return buckets;
@@ -143,11 +154,12 @@ export class EmployeeService {
       body: {
         aggs: {
           designation_distribution: {
-            terms: { field: 'Designation.keyword' },
+            terms: { field: 'Designation' },
           },
         },
       },
     });
+
     const buckets = (
       result.aggregations?.designation_distribution as { buckets: any[] }
     ).buckets;
